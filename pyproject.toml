@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "factory-investigator"
+version = "0.1.0"
+description = "Evidence-backed industrial pump anomaly investigations"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.24,<3"]
+
+[project.optional-dependencies]
+agents = ["langgraph>=1,<2"]
+mcp = ["mcp>=1.12,<2"]
+snowflake = ["snowflake-connector-python>=3.14,<5"]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+factory-investigator = "factory_investigator.cli:main"
+factory-investigator-mcp = "factory_investigator.gateway:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
